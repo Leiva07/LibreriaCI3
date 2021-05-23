@@ -39,6 +39,7 @@ class Login extends CI_Controller {
 					 $this->load->view('inicio');
 				 }
 				 else{
+					 $this->session->set_flashdata('error','error');
 					redirect('/', 'refresh');
 				 }
 			 }
@@ -49,19 +50,5 @@ class Login extends CI_Controller {
 		else{
 			redirect('/', 'refresh');
 		}
-        
-        
-            /*  if($data->clave == $clave){
-
-                 $this->load->view('header'); 
-                 $this->load->view('inicio'); 
-             }
-            else
-            {
-                $this->load->view('header');
-		        $this->load->view('login');
-            } */
-
-		
 	}
 }

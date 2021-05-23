@@ -13,6 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     
 	<link rel='stylesheet' href='<?php base_url()?>assets/css/estilo.css' >
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <header class="p-3 bg-dark text-white">

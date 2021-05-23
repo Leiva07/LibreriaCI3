@@ -1,4 +1,14 @@
 <body>
+  <?php 
+  
+  if($this->session->flashdata('error') != null):
+    
+    ?>
+<script src="assets/js/sesion.js"></script>
+    <?php
+  endif;
+
+  ?>
   <main class="form-signin">
 
   <?php 
