@@ -35,10 +35,25 @@ class Inicio extends CI_Controller {
 
     function buscar(){
         if($this->session->userdata('usuario') != ''){
-            $busqueda = null;
-            $busqueda = strtoupper($this->input->post('search'));
+            $busqueda = $this->input->post('search');
             $this->load->model('LibrosModel');
+            If(empty($busqueda)){
             $data['libros'] = $this->LibrosModel->buscarCodigo($busqueda);
+            }
+            elseif(empty($data['libros'])){
+                $data['libros'] = $this->LibrosModel->buscarTitulo($busqueda);
+                if(empty($data['libros'])){
+                    $data['libros'] = $this->LibrosModel->buscarAutor($busqueda);
+                    if($data['libros'] == null){
+                        $data['libros'] = $this->LibrosModel->buscarAnio($busqueda);
+                        if($data['libros'] == null){
+                            $data['libros'] = $this->LibrosModel->buscarEstante($busqueda);
+                            
+                        }
+                    }
+                }
+            }
+            
             
             $this->load->view('header');
             $this->load->view('inicio',$data); 
