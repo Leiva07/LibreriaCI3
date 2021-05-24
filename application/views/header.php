@@ -25,20 +25,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Inicio</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Reservas</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Libros</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Acerca de</a></li>
+          <li><?php echo anchor('Inicio/', 'Inicio', 'class="nav-link px-2 text-secondary"');?></li>
+          <li><?php echo anchor('Inicio/', 'Libros', 'class="nav-link px-2 text-white"');?></li>
+          <li><?php echo anchor('#', 'Acerca de', 'class="nav-link px-2 text-white"');?></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <!-- <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search"> -->
-        </form>
+        <table>
+          <tr>
+            <td>
+            <?php
+          if($this->session->userdata('usuario') != null):
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Inicio de Sesion</button>
-          <!-- <button type="button" class="btn btn-warning">Sign-up</button> -->
+            $data = array(
+              'class' => 'col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3'
+            );
+            echo form_open('Inicio/buscar',$data);
+
+            $data = array(
+              'placeholder' => 'Search...',
+              'class' => 'form-control form-control-dark',
+              'name' => 'search',
+              'aria-label' => 'Search'
+            );
+
+            echo form_input($data);
+            ?>
+            </td>
+            <td>
+            <div class="text-end">
+          <?php
+          $data = array(
+            'class' => 'btn btn-outline-light me-2',
+            'value' => 'Buscar'
+          );
+          echo form_submit($data);
+
+          echo form_close();
+          ?>
+          </td>
+          
+          <td>
+          </a>
+           <?php
+          endif;
+          ?>
         </div>
+            </td>
+          </tr>
+        </table>
+        <?php 
+        if($this->session->userdata('usuario') != null):
+
+            $data = array(
+              'class' => 'col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3'
+            );
+          echo form_open('Inicio/cerrarSesion',$data);
+
+          $data = array(
+            'class' => 'btn btn-warning',
+            'value' => 'Cerrar Sesion'
+          );
+
+          echo form_submit($data);
+
+          echo form_close();
+        endif;
+        ?>
       </div>
     </div>
   </header>

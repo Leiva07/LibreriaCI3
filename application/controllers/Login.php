@@ -9,6 +9,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+
 		$this->load->view('header');
 		    $this->load->view('login');
 	}
@@ -20,6 +21,7 @@ class Login extends CI_Controller {
 		if ($this->form_validation->run())
 		{
 			$this->load->model("LoginModel");
+			$this->load->model("LibrosModel");
 
 		$usuario = $this->input->post('usuario');
 		$clave = $this->input->post('clave');
@@ -35,8 +37,9 @@ class Login extends CI_Controller {
 			 if($usuario == $usuarioDB){
 				 if($clave == $claveDB){
 					 $this->session->set_userdata('usuario', $usuarioDB);
-					 $this->load->view('header');
-					 $this->load->view('inicio');
+					 $data['libros'] = $this->LibrosModel->buscarCodigo();
+					   $this->load->view('header');
+					 $this->load->view('inicio',$data);  
 				 }
 				 else{
 					 $this->session->set_flashdata('error','error');
@@ -44,6 +47,7 @@ class Login extends CI_Controller {
 				 }
 			 }
 			 else{
+				$this->session->set_flashdata('error','error');
 				redirect('/', 'refresh');
 			 }
 		}
