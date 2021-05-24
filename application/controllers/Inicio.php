@@ -44,11 +44,13 @@ class Inicio extends CI_Controller {
                 $data['libros'] = $this->LibrosModel->buscarTitulo($busqueda);
                 if(empty($data['libros'])){
                     $data['libros'] = $this->LibrosModel->buscarAutor($busqueda);
-                    if($data['libros'] == null){
+                    if(empty($data['libros'])){
                         $data['libros'] = $this->LibrosModel->buscarAnio($busqueda);
-                        if($data['libros'] == null){
+                        if(empty($data['libros'])){
                             $data['libros'] = $this->LibrosModel->buscarEstante($busqueda);
-                            
+                            if(empty($data['libros'])){
+                                $data['libros'] = $this->LibrosModel->buscarCategoria($busqueda);
+                            }
                         }
                     }
                 }
@@ -63,8 +65,22 @@ class Inicio extends CI_Controller {
     }
 
     function reservar(){
+        if($this->session->userdata('usuario') != ''){
 
+            $this->load->view('header');
+            $this->load->view('reserva');
 
+        }else{
+            $this->load->view('header');
+            $this->load->view('login'); 
+        /* redirect('/','refresh'); */
+    }
+
+    }
+
+    function prueba($busqueda){
+        $this->load->model('LibrosModel');
+       echo $this->LibrosModel->buscarCategoria($busqueda);
     }
 
 }

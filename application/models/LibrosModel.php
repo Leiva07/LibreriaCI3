@@ -2,7 +2,7 @@
 
 class LibrosModel extends CI_Model{
 
-    private $table ="tbl_libro l";
+    private $table ="tbl_libro";
 
     function __construct(){
 
@@ -65,17 +65,12 @@ class LibrosModel extends CI_Model{
         return $query->result();
         }
 
-        /* function buscarCategoria($categoria){
-            $this->db->select('l.*');
-        $this->db->from($this->table);
-        $this->db->join('tbl_categoria','l.id_categoria on c.id_categoria');
-        $this->db->like('categoria c', $categoria);
-
-        $query = $this->db->get();
-        return $query->result();
+         function buscarCategoria($categoria){
+        $query ='SELECT * FROM tbl_libros';
         
-        
-        } */
+        $resultado = $this->db->query($query);
+        return $resultado;
+        } 
 }
 
 ?>

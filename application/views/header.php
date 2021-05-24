@@ -27,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><?php echo anchor('Inicio/', 'Inicio', 'class="nav-link px-2 text-secondary"');?></li>
           <li><?php echo anchor('Inicio/', 'Libros', 'class="nav-link px-2 text-white"');?></li>
+          <li><?php echo anchor('Inicio/reservar', 'Reservas', 'class="nav-link px-2 text-white"');?></li>
           <li><?php echo anchor('#', 'Acerca de', 'class="nav-link px-2 text-white"');?></li>
         </ul>
 
